@@ -292,8 +292,16 @@ class KuveytPosResponseDataMapper extends AbstractResponseDataMapper implements 
         $responseResults = $rawResponseData['PartialDrawbackResult']['Results'];
         if ($status !== self::TX_APPROVED && isset($responseResults['Result']) && [] !== $responseResults['Result']) {
             $responseResult = $responseResults['Result'][0];
-            $result['error_code'] = $responseResult['ErrorCode'];
-            $result['error_message'] = $responseResult['ErrorMessage'];
+
+            // $responseResults 0 keyinde ErrorMessage bulamadığı için hataya yol açıyordu.
+            if (isset($responseResult['ErrorMessage'])){
+                $result['error_code'] = $responseResult['ErrorCode'];
+                $result['error_message'] = $responseResult['ErrorMessage'];
+            }else{
+                $responseResult = $responseResults['Result'][1];
+                $result['error_code'] = $responseResult['ErrorCode'];
+                $result['error_message'] = $responseResult['ErrorMessage'];
+            }
 
             return $result;
         }
