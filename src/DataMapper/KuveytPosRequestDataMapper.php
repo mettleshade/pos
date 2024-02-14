@@ -272,6 +272,7 @@ class KuveytPosRequestDataMapper extends AbstractRequestDataMapperCrypt
                 'SurchargeAmount' => 0,
                 'SGKDebtAmount' => 0,
                 'TransactionSecurity' => 1,
+                'RetryCount' => 1, // Yeni versiyonda iptal ve iade için gerekli.
             ]
         ];
     }
@@ -321,6 +322,7 @@ class KuveytPosRequestDataMapper extends AbstractRequestDataMapperCrypt
                 'SurchargeAmount' => 0,
                 'SGKDebtAmount' => 0,
                 'TransactionSecurity' => 1,
+                'RetryCount' => 1, // Yeni versiyonda iptal ve iade için gerekli.
             ]
         ];
     }
